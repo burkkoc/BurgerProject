@@ -1,0 +1,182 @@
+﻿@page
+@using MVCGrup2.Enums
+@model RegisterModel
+@{
+    ViewData["Title"] = "Welcome to Burgeristan";
+
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-image: url("https://i.imgur.com/1swDo4v.jpeg");
+            background-size: cover; /* Resmi ekran boyutuna sığdırır */
+            background-position: center; /* Resmi dikey ve yatay olarak ortalar */
+            background-repeat: no-repeat; /* Resmi tekrar etmez */
+            height: 100vh; /* Ekran yüksekliği kadar uzatır */
+            margin: 0; /* Sayfa kenar boşluklarını kaldırır */
+            padding: 0; /* İçerik kenar boşluklarını kaldırır */
+        }
+
+
+        #login img {
+            margin: 10px 0;
+        }
+
+        #login .center {
+            text-align: center;
+        }
+
+        #login .login {
+            max-width: 300px;
+            margin: 35px auto;
+        }
+
+        #login .login-form {
+            padding: 0px 25px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <div id="login" class="container">
+
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="login well well-small">
+                    <div class="center">
+
+                        Burgeristan
+                    </div>
+                    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+
+                        <hr />
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                        <div class="control-group">
+                            <div class="input-prepend">
+                                <label asp-for="Input.Name">Name <span class="text-danger">*</span></label>
+                                <span class="add-on"><i class="icon-user"></i></span>  
+                                
+                            <input asp-for="Input.Name" class="form-control" autocomplete="name" aria-required="true" placeholder="Name" />
+                            
+
+
+                            </div>
+                         
+                            <span asp-validation-for="Input.Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="input-prepend">
+                                <label asp-for="Input.Surname">Surname <span class="text-danger">*</span></label>
+                                <span class="add-on"><i class="icon-user"></i></span>
+
+                            <input asp-for="Input.Surname" class="form-control" autocomplete="surname" aria-required="true" placeholder="Surname" />
+
+
+                            </div>
+                      
+                            <span asp-validation-for="Input.Surname" class="text-danger"></span>
+                       </div>
+
+                        <div class="control-group">
+                            <div class="input-prepend">
+                                <label asp-for="Input.Email">Email <span class="text-danger">*</span></label>
+                                <span class="add-on"><i class="bi-envelope"></i></span>
+
+
+
+                            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                            </div>
+                           
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="input-prepend">
+                                <label asp-for="Input.Phone">Phone</label>
+                                <span class="add-on"><i class="bi-telephone-fill"></i></span>
+                                <i class="bi-telephone-fill"></i>
+
+                            <input asp-for="Input.Phone" class="form-control" autocomplete="Phone" aria-required="true" placeholder="Phone" />
+                           </div>
+                           
+                            <span asp-validation-for="Input.Phone" class="text-danger"></span>
+                        </div>
+                   
+                        <div class="control-group">
+                            <div class="input-group-prepend">
+                                <label asp-for="Input.UserGender">Gender</label>
+                                <div class="input-group-prepend">
+                                    <span class="add-on"><i class="bi bi-gender-ambiguous"></i></span>
+                               
+                                <select asp-for="Input.UserGender" class="form-control" asp-items="Html.GetEnumSelectList<Gender>()" aria-required="true" placeholder="Gender" autocomplete="Gender">
+                                    <option selected="selected" value="">Please select your gender <span class="text-danger">*</span></option>
+                                </select>
+                                </div>
+                            </div>
+                            <span asp-validation-for="Input.UserGender" class="text-danger"></span>
+                        </div>
+
+
+                     
+
+                        <div class="control-group">
+                            <div class="input-prepend">
+                                <label asp-for="Input.Birthday">Birthday <span class="text-danger">*</span></label>
+
+                                <span class="add-on"><i class="bi-calendar-date"></i></span>
+
+                   
+                            <input asp-for="Input.Birthday" class="form-control" autocomplete="Birthday" aria-required="true" placeholder="Birthday" type="date" />
+                            </div>
+                        
+                            <span asp-validation-for="Input.Birthday" class="text-danger"></span>
+                        </div>
+
+
+
+
+                        <div class="control-group">
+                            <div class="input-prepend">
+                                <label asp-for="Input.Password">Password <span class="text-danger">*</span></label>
+                                <span class="add-on"><i class="icon-lock"></i></span>
+
+                          
+                                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                                </div>
+                           
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="input-prepend">
+                                <label asp-for="Input.ConfirmPassword">Confirm Password <span class="text-danger">*</span></label>
+                                <span class="add-on"><i class="icon-lock"></i></span>
+
+
+                                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                                </div>
+                       
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                    </form>
+                </div><!--/.login-->
+            </div><!--/.span12-->
+        </div><!--/.row-fluid-->
+    </div><!--/.container-->
+</body>
+</html>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
